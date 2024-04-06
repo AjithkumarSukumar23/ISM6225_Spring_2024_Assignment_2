@@ -99,8 +99,20 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                if (nums.Length==0) 
+                    return 0;
+                int uniqueindex = 1;
+                for(int i=1;i<nums.Length;i++)
+                {
+                    if (nums[i] != nums[uniqueindex-1])
+                    {
+                        nums[uniqueindex] = nums[i];
+                        uniqueindex ++;
+
+                    }
+                }
+                return uniqueindex;
+
             }
             catch (Exception)
             {
@@ -134,14 +146,29 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return new List<int>();
+                int nonZeroIndex = 0;
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] != 0)
+                    {
+                        nums[nonZeroIndex] = nums[i];
+                        nonZeroIndex++;
+                    }
+                }
+
+                for (int i = nonZeroIndex; i < nums.Length; i++)
+                {
+                    nums[i] = 0;
+                }
+
+                return nums.ToList();
             }
             catch (Exception)
             {
                 throw;
             }
         }
+ 
 
         /*
 
@@ -185,8 +212,49 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return new List<IList<int>>();
+                List<IList<int>> result = new List<IList<int>>();
+                if (nums.Length < 3)
+                    return result;
+
+                Array.Sort(nums);
+
+                for (int i = 0; i < nums.Length - 2; i++)
+                {
+                    if (i > 0 && nums[i] == nums[i - 1])
+                        continue;
+
+                    int left = i + 1;
+                    int right = nums.Length - 1;
+
+                    while (left < right)
+                    {
+                        int sum = nums[i] + nums[left] + nums[right];
+
+                        if (sum == 0)
+                        {
+                            result.Add(new List<int> { nums[i], nums[left], nums[right] });
+
+                            while (left < right && nums[left] == nums[left + 1])
+                                left++;
+                            while (left < right && nums[right] == nums[right - 1])
+                                right--;
+
+                            left++;
+                            right--;
+                        }
+                        else if (sum < 0)
+                        {
+                            left++;
+                        }
+                        else
+                        {
+                            right--;
+                        }
+                    }
+                }
+
+                return result;
+
             }
             catch (Exception)
             {
@@ -220,8 +288,24 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                int maxCount = 0;
+                int currentCount = 0;
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] == 1)
+                    {
+                        currentCount++;
+                    }
+                    else
+                    {
+                        maxCount = Math.Max(maxCount, currentCount);
+                        currentCount = 0;
+                    }
+                }
+
+                return Math.Max(maxCount, currentCount);
+                ;
             }
             catch (Exception)
             {
@@ -256,8 +340,19 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                int decimal_value = 0;
+                int power = 0;
+
+                while (binary > 0)
+                {
+                    int remainder = binary % 10;
+                    decimal_value += remainder * (int)Math.Pow(2, power);
+                    binary /= 10;
+                    power++;
+                }
+
+                return decimal_value;
+
             }
             catch (Exception)
             {
@@ -294,8 +389,28 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return 0;
+                if (nums.Length < 2)
+                {
+                    return 0;
+                }
+
+                Array.Sort(nums);
+
+                int maxGap = 0;
+
+                for (int index = 0; index < nums.Length - 1; index++)
+                {
+                    int gap = nums[index + 1] - nums[index];
+                    if (gap > maxGap)
+                    {
+                        maxGap = gap;
+                    }
+                }
+
+                return maxGap;
+
+
+
             }
             catch (Exception)
             {
@@ -334,8 +449,20 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
+                if (nums.Length < 3)
+                    return 0;
+
+                Array.Sort(nums);
+                Array.Reverse(nums);
+
+                for (int i = 0; i < nums.Length - 2; i++)
+                {
+                    if (nums[i] < nums[i + 1] + nums[i + 2])
+                        return nums[i] + nums[i + 1] + nums[i + 2];
+                }
+
                 return 0;
+
             }
             catch (Exception)
             {
@@ -388,8 +515,13 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
-                // Write your code here and you can modify the return value according to the requirements
-                return "";
+                while (s.Contains(part))
+                {
+                    int index = s.IndexOf(part);
+                    s = s.Remove(index, part.Length);
+                }
+                return s;
+
             }
             catch (Exception)
             {
