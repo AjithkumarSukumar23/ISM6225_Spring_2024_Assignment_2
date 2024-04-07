@@ -164,7 +164,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                     }
                 }
 
-                // Fill the rest of the array with zeros
+                // Fill the remaining of the array with zeros
                 for (int i = nonZeroIndex; i < nums.Length; i++)
                 {
                     nums[i] = 0;
