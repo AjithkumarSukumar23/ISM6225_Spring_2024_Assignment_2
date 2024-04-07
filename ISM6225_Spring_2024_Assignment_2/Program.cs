@@ -99,10 +99,13 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // If the array is empty, return 0
                 if (nums.Length==0) 
                     return 0;
                 int uniqueindex = 1;
-                for(int i=1;i<nums.Length;i++)
+
+                // Loop through the array starting from the second element
+                for (int i=1;i<nums.Length;i++)
                 {
                     if (nums[i] != nums[uniqueindex-1])
                     {
@@ -111,6 +114,8 @@ namespace ISM6225_Spring_2024_Assignment_2
 
                     }
                 }
+
+                // Return the count of unique elements
                 return uniqueindex;
 
             }
@@ -146,7 +151,10 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // Initialize the non-zero index to 0
                 int nonZeroIndex = 0;
+
+                // Loop through the array
                 for (int i = 0; i < nums.Length; i++)
                 {
                     if (nums[i] != 0)
@@ -156,11 +164,13 @@ namespace ISM6225_Spring_2024_Assignment_2
                     }
                 }
 
+                // Fill the rest of the array with zeros
                 for (int i = nonZeroIndex; i < nums.Length; i++)
                 {
                     nums[i] = 0;
                 }
 
+                // Convert the array to a list and return it
                 return nums.ToList();
             }
             catch (Exception)
@@ -212,12 +222,16 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // Initialize the result list
                 List<IList<int>> result = new List<IList<int>>();
+
+                // If the array has less than 3 elements, return the empty result
                 if (nums.Length < 3)
                     return result;
 
                 Array.Sort(nums);
 
+                // Loop through the array until the third last element
                 for (int i = 0; i < nums.Length - 2; i++)
                 {
                     if (i > 0 && nums[i] == nums[i - 1])
@@ -253,6 +267,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                     }
                 }
 
+                // Return the result list
                 return result;
 
             }
@@ -288,9 +303,11 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // Initialize the maximum count and current count to 0
                 int maxCount = 0;
                 int currentCount = 0;
 
+                // Loop through the array
                 for (int i = 0; i < nums.Length; i++)
                 {
                     if (nums[i] == 1)
@@ -304,8 +321,9 @@ namespace ISM6225_Spring_2024_Assignment_2
                     }
                 }
 
+                // Return the maximum count after comparing it with the current count
                 return Math.Max(maxCount, currentCount);
-                ;
+                
             }
             catch (Exception)
             {
@@ -340,9 +358,11 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // Initialize the decimal value
                 int decimal_value = 0;
                 int power = 0;
 
+                // Loop until the binary number becomes 0
                 while (binary > 0)
                 {
                     int remainder = binary % 10;
@@ -351,6 +371,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                     power++;
                 }
 
+                // Return the decimal value
                 return decimal_value;
 
             }
@@ -389,15 +410,18 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // Check if the array has less than two elements
                 if (nums.Length < 2)
                 {
                     return 0;
                 }
 
+                // Sort the array in ascending order
                 Array.Sort(nums);
 
                 int maxGap = 0;
 
+                // Iterate over the array
                 for (int index = 0; index < nums.Length - 1; index++)
                 {
                     int gap = nums[index + 1] - nums[index];
@@ -407,6 +431,7 @@ namespace ISM6225_Spring_2024_Assignment_2
                     }
                 }
 
+                // Return the maximum gap
                 return maxGap;
 
 
@@ -449,12 +474,15 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // Check if the array has less than three elements
                 if (nums.Length < 3)
                     return 0;
 
+                // Sort the array in ascending order and then reverse it to get descending order
                 Array.Sort(nums);
                 Array.Reverse(nums);
 
+                // Iterate over the array
                 for (int i = 0; i < nums.Length - 2; i++)
                 {
                     if (nums[i] < nums[i + 1] + nums[i + 2])
@@ -515,11 +543,13 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             try
             {
+                // Loop while the string 's' contains the substring 'part'
                 while (s.Contains(part))
                 {
                     int index = s.IndexOf(part);
                     s = s.Remove(index, part.Length);
                 }
+                // Return the modified string 's'
                 return s;
 
             }
